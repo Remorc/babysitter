@@ -9,7 +9,7 @@ public class JavaBabysitter {
         if (bed > start) {
             pay = (end - start) * START_TO_BED_PAY;
         } else {
-            pay = BED_TO_MIDNIGHT_PAY;
+            pay = (end - start) * BED_TO_MIDNIGHT_PAY;
         }
 
         return pay;
