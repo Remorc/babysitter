@@ -49,4 +49,10 @@ public class JavaBabysitterTest {
         int expectedPay = AFTER_MIDNIGHT_PAY;
         assertEquals(expectedPay, JavaBabysitter.calculatePay(12, 12, 1));
     }
+
+    @Test
+    public void shouldCalculatePayWhenCrossingBedtimeBeforeMidnight() {
+        int expectedPay = START_TO_BED_PAY + BED_TO_MIDNIGHT_PAY;
+        assertEquals(expectedPay, JavaBabysitter.calculatePay(5, 6, 7));
+    }
 }
