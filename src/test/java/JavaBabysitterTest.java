@@ -43,4 +43,10 @@ public class JavaBabysitterTest {
         int expectedPay = AFTER_MIDNIGHT_PAY * 2;
         assertEquals(expectedPay, JavaBabysitter.calculatePay(1, 1, 3));
     }
+
+    @Test
+    public void shouldBeAbleToHandleRollOverAtMidnight() {
+        int expectedPay = AFTER_MIDNIGHT_PAY;
+        assertEquals(expectedPay, JavaBabysitter.calculatePay(12, 12, 1));
+    }
 }
