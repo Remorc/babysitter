@@ -24,7 +24,7 @@ public class JavaBabysitter {
         int end = map.getOrDefault(endTime, endTime);
 
         pay += calculateStartToBedPay(start, bed);
-        pay += calculateBedToMidnightPay(bed, end);
+        pay += calculateBedToMidnightPay(start, bed, end);
         pay += calculateAfterMidnightPay(start, end);
 
         return pay;
@@ -33,17 +33,25 @@ public class JavaBabysitter {
     private static int calculateAfterMidnightPay(int start, int end) {
         int pay = 0;
 
-        if (end > MIDNIGHT){
-            pay += (end - start) * AFTER_MIDNIGHT_PAY;
+        if (end > MIDNIGHT) {
+            if (start > MIDNIGHT) {
+                pay += (end - start) * AFTER_MIDNIGHT_PAY;
+            } else {
+                pay += (end - MIDNIGHT) * AFTER_MIDNIGHT_PAY;
+            }
         }
         return pay;
     }
 
-    private static int calculateBedToMidnightPay(int bed, int end) {
+    private static int calculateBedToMidnightPay(int start, int bed, int end) {
         int pay = 0;
 
-        if (end > bed && end < MIDNIGHT) {
-            pay += (end - bed) * BED_TO_MIDNIGHT_PAY;
+        if (end > bed && start < MIDNIGHT) {
+            if (end < MIDNIGHT) {
+                pay += (end - bed) * BED_TO_MIDNIGHT_PAY;
+            } else {
+                pay += (MIDNIGHT - bed) * BED_TO_MIDNIGHT_PAY;
+            }
         }
         return pay;
     }
