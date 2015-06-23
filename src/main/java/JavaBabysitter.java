@@ -46,7 +46,7 @@ public class JavaBabysitter {
     private static int calculateBedToMidnightPay(int start, int bed, int end) {
         int pay = 0;
 
-        if (end > bed && start < MIDNIGHT) {
+        if (end > bed && bed < MIDNIGHT) {
             if (end < MIDNIGHT) {
                 pay += (end - bed) * BED_TO_MIDNIGHT_PAY;
             } else if (start < bed) {
@@ -62,7 +62,11 @@ public class JavaBabysitter {
         int pay = 0;
 
         if (start < bed) {
-            pay += (bed - start) * START_TO_BED_PAY;
+            if (bed < MIDNIGHT) {
+                pay += (bed - start) * START_TO_BED_PAY;
+            } else {
+                pay += (MIDNIGHT - start) * START_TO_BED_PAY;
+            }
         }
         return pay;
     }
