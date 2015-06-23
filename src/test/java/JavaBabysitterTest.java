@@ -61,4 +61,16 @@ public class JavaBabysitterTest {
         int expectedPay = BED_TO_MIDNIGHT_PAY + AFTER_MIDNIGHT_PAY;
         assertEquals(expectedPay, JavaBabysitter.calculatePay(11, 11, 1));
     }
+
+    @Test
+    public void shouldCalculatePayForFullNightOfWork() {
+        int expectedPay = (START_TO_BED_PAY * 4) + (BED_TO_MIDNIGHT_PAY * 3) + (AFTER_MIDNIGHT_PAY * 4);
+        assertEquals(expectedPay, JavaBabysitter.calculatePay(5, 9, 4));
+    }
+
+    @Test
+    public void shouldCalculatePayWhenGoingToBedEarly() {
+        int expectedPay = (BED_TO_MIDNIGHT_PAY * 2) + (AFTER_MIDNIGHT_PAY * 4);
+        assertEquals(expectedPay, JavaBabysitter.calculatePay(10, 5, 4));
+    }
 }

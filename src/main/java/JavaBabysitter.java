@@ -49,8 +49,10 @@ public class JavaBabysitter {
         if (end > bed && start < MIDNIGHT) {
             if (end < MIDNIGHT) {
                 pay += (end - bed) * BED_TO_MIDNIGHT_PAY;
-            } else {
+            } else if (start < bed) {
                 pay += (MIDNIGHT - bed) * BED_TO_MIDNIGHT_PAY;
+            } else {
+                pay += (MIDNIGHT - start) * BED_TO_MIDNIGHT_PAY;
             }
         }
         return pay;
